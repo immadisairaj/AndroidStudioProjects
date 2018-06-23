@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/img_love"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/love_1" />
+
+        <Button
+            android:id="@+id/btn_love"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/img_love"
+            android:layout_margin="10dp"
+            android:onClick="onClickLove"
+            android:text="@string/Love"
+            tools:layout_alignBottom="@+id/img_love" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/img_hate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/hate_1"
+            android:scaleType="centerCrop" />
+
+        <Button
+            android:id="@+id/btn_hate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/img_hate"
+            android:layout_margin="10dp"
+            android:onClick="onClickHate"
+            android:text="@string/Hate"
+            tools:layout_alignBottom="@+id/img_hate" />
+
+    </RelativeLayout>
+
+</LinearLayout>
