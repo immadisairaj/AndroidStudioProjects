@@ -22,11 +22,11 @@
             android:id="@+id/btn_love"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img_love"
             android:layout_alignEnd="@+id/img_love"
             android:layout_margin="10dp"
             android:onClick="onClickLove"
-            android:text="@string/Love"
-            tools:layout_alignBottom="@+id/img_love" />
+            android:text="@string/Love" />
 
     </RelativeLayout>
 
@@ -39,18 +39,18 @@
             android:id="@+id/img_hate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/hate_1"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/hate_1" />
 
         <Button
             android:id="@+id/btn_hate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img_hate"
             android:layout_alignEnd="@+id/img_hate"
             android:layout_margin="10dp"
             android:onClick="onClickHate"
-            android:text="@string/Hate"
-            tools:layout_alignBottom="@+id/img_hate" />
+            android:text="@string/Hate" />
 
     </RelativeLayout>
 
