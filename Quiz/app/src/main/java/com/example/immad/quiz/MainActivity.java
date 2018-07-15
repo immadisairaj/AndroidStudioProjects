@@ -78,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
     };
 
     int[] Answer = {
-            4,3,2,2,1,3,4,2,3,2
+            4, 3, 2, 2, 1, 3, 4, 2, 3, 2
     };
 
     int ques, score, ans, nextC;
 
-    String q_nos = "Question: "+1+" out of "+Question.length;
+    String q_nos = "Question: " + 1 + " out of " + Question.length;
 
     TextView q_no, questions;
 
@@ -116,11 +116,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goNext() {
         ques++;
-        if(ques >= Question.length) {
+        if (ques >= Question.length) {
             ques = Question.length - 1;
         }
 
-        q_nos = "Question: "+(ques+1)+" out of "+Question.length;
+        q_nos = "Question: " + (ques + 1) + " out of " + Question.length;
         q_no.setText(q_nos);
         questions.setText(Question[ques]);
         opA.setText(optA[ques]);
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkScore() {
-        if(Answer[ques] == ans) {
+        if (Answer[ques] == ans) {
             score++;
             ans = 0;
         }
@@ -141,27 +141,27 @@ public class MainActivity extends AppCompatActivity {
         RadioGroup optionsGroup = findViewById(R.id.options);
         int selectedId = optionsGroup.getCheckedRadioButtonId();
 
-        switch(selectedId) {
-            case R.id.optionA :
+        switch (selectedId) {
+            case R.id.optionA:
                 ans = 1;
                 break;
-            case R.id.optionB :
+            case R.id.optionB:
                 ans = 2;
                 break;
-            case R.id.optionC :
+            case R.id.optionC:
                 ans = 3;
                 break;
-            case R.id.optionD :
+            case R.id.optionD:
                 ans = 4;
                 break;
         }
-        if(nextC <= Question.length) {
+        if (nextC <= Question.length) {
             checkScore();
         }
-        if(ques < Question.length-2) {
+        if (ques < Question.length - 2) {
             optionsGroup.clearCheck();
             goNext();
-        }else if(ques == Question.length-2) {
+        } else if (ques == Question.length - 2) {
             Button button = findViewById(R.id.next);
             button.setVisibility(view.INVISIBLE);
             button = findViewById(R.id.submit);
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         clickNext(view);
 
         Context context = getApplicationContext();
-        CharSequence text = "Scored "+score+" out of "+Question.length;
+        CharSequence text = "Scored " + score + " out of " + Question.length;
         int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(context, text, duration);
