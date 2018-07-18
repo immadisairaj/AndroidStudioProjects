@@ -28,6 +28,17 @@
         android:text="@string/submit"
         android:visibility="invisible" />
 
+    <Button
+        android:id="@+id/b_solution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
+        android:onClick="clickSolutions"
+        android:text="@string/view_answer"
+        android:visibility="invisible" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

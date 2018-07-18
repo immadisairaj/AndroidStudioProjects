@@ -8,14 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class Solution extends AppCompatActivity {
-
-    private RecyclerView.Adapter solutionsAdapter;
+public class Solution extends AppCompatActivity {
 
     @BindView(R.id.rv_solutions)
     RecyclerView solutions;
 
-    MainActivity main;
+    Question q;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,12 +21,12 @@ class Solution extends AppCompatActivity {
         setContentView(R.layout.layout_solution);
         ButterKnife.bind(this);
 
-        solutionsAdapter = new SolutionsAdapter(main.getAnswers(),
-                                                main.getAnswer(),
-                                                main.getOptionsA(),
-                                                main.getOptionsB(),
-                                                main.getOptionsC(),
-                                                main.getOptionsD());
+        RecyclerView.Adapter solutionsAdapter = new SolutionsAdapter(q.Answers,
+                q.Answer,
+                q.optA,
+                q.optB,
+                q.optC,
+                q.optD);
         solutions.setAdapter(solutionsAdapter);
     }
 }

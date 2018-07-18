@@ -13,14 +13,14 @@ import butterknife.ButterKnife;
 
 class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionViewHolder> {
 
-    public int[] Answers;
-    public int[] Answer;
-    public String[] optA;
-    public String[] optB;
-    public String[] optC;
-    public String[] optD;
+    private int[] Answers;
+    private int[] Answer;
+    private String[] optA;
+    private String[] optB;
+    private String[] optC;
+    private String[] optD;
 
-    public SolutionsAdapter(int[] answers, int[] answer, String[] optionsA, String[] optionsB, String[] optionsC, String[] optionsD) {
+    SolutionsAdapter(int[] answers, int[] answer, String[] optionsA, String[] optionsB, String[] optionsC, String[] optionsD) {
         Answers = answers;
         Answer = answer;
         optA = optionsA;
@@ -41,7 +41,7 @@ class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionVie
         String corr = "";
 
         switch (Answers[i]) {
-            case 0:
+            case -1:
                 ans = "Not Attempted";
                 break;
             case 1:
@@ -101,7 +101,7 @@ class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionVie
         @BindView(R.id.tv_correct)
         TextView correct;
 
-        public SolutionViewHolder(@NonNull View itemView) {
+        SolutionViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ButterKnife.bind(this, itemView);
