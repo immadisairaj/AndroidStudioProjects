@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        tools:text="Question"
+        android:textSize="20sp"/>
+    
+    <TextView
+        android:id="@+id/tv_answered"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        tools:text="Answered"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv_correct"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        tools:text="Correct Answer"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+</LinearLayout>

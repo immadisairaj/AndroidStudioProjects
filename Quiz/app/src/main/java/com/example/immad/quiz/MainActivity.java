@@ -1,6 +1,7 @@
 package com.example.immad.quiz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +11,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-    String[] Question = {
+    public String[] Question = {
             "According to data on language released as part of Census 2011, which is the most spoken language in India?",
             "Who has been sworn-in as the first-ever visually impaired judge of Pakistan?",
             "Who has broken the legendary Sriram Singh’s four-decade-old 800m National record at the 58th National Inter State Senior Athletics Championships 2018?",
@@ -25,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             "The Raja Lakhamagouda dam is located in which state?"
     };
 
-    String[] optA = {
+    public String[] optA = {
             "Marathi",
             "Yawar Ali",
             "Sangram Singh",
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             "Kerala"
     };
 
-    String[] optB = {
+    public String[] optB = {
             "Bengali",
             "Sana Afzal",
             "Jinson Johnson",
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             "Karnataka"
     };
 
-    String[] optC = {
+    public String[] optC = {
             "Telugu",
             "Yousaf Saleem",
             "Arka Bhattacharya",
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             "Tamil Nadu"
     };
 
-    String[] optD = {
+    public String[] optD = {
             "Hindi",
             "Zubair Sabir",
             "Mohammad Afsal",
@@ -77,35 +81,52 @@ public class MainActivity extends AppCompatActivity {
             "Andhra Pradesh"
     };
 
-    int[] Answer = {
+    public int[] Answer = {
             4, 3, 2, 2, 1, 3, 4, 2, 3, 2
+    };
+
+    public int[] Answers = {
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     };
 
     int ques, score, ans, nextC;
 
     String q_nos = "Question: " + 1 + " out of " + Question.length;
 
-    TextView q_no, questions;
+    @BindView(R.id.q_numbers)
+    TextView q_no;
 
-    RadioButton opA, opB, opC, opD;
+    @BindView(R.id.question)
+    TextView questions;
+
+    @BindView(R.id.optionA)
+    RadioButton opA;
+
+    @BindView(R.id.optionB)
+    RadioButton opB;
+
+    @BindView(R.id.optionC)
+    RadioButton opC;
+
+    @BindView(R.id.optionD)
+    RadioButton opD;
+
+    @BindView(R.id.options)
+    RadioGroup optionsGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        q_no = findViewById(R.id.q_numbers);
+        ButterKnife.bind(this);
+
         q_no.setText(q_nos);
         questions = findViewById(R.id.question);
         questions.setText(Question[0]);
-
-        opA = findViewById(R.id.optionA);
         opA.setText(optA[0]);
-        opB = findViewById(R.id.optionB);
         opB.setText(optB[0]);
-        opC = findViewById(R.id.optionC);
         opC.setText(optC[0]);
-        opD = findViewById(R.id.optionD);
         opD.setText(optD[0]);
 
         ques = 0;
@@ -138,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickNext(View view) {
         nextC++;
-        RadioGroup optionsGroup = findViewById(R.id.options);
+
         int selectedId = optionsGroup.getCheckedRadioButtonId();
 
         switch (selectedId) {
@@ -155,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 ans = 4;
                 break;
         }
+        Answers[ques] = ans;
         if (nextC <= Question.length) {
             checkScore();
         }
@@ -176,9 +198,19 @@ public class MainActivity extends AppCompatActivity {
 
         Context context = getApplicationContext();
         CharSequence text = "Scored " + score + " out of " + Question.length;
-        int duration = Toast.LENGTH_LONG;
+        int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+
+        Intent solutions = new Intent(MainActivity.this, Solution.class);
+        startActivity(solutions);
     }
+
+    public int[] getAnswer() { return Answer; }
+    public int[] getAnswers() { return Answers; }
+    public String[] getOptionsA() { return optA; }
+    public String[] getOptionsB() { return optB; }
+    public String[] getOptionsC() { return optC; }
+    public String[] getOptionsD() { return optD; }
 }
