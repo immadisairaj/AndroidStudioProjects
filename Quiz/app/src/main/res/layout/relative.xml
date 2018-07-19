@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_margin="10dp"
+    android:padding="5dp"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_question"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        tools:text="Question"
-        android:textSize="20sp"/>
-    
+        android:layout_height="30dp"
+        android:textSize="25sp"
+        tools:text="Question" />
+
     <TextView
         android:id="@+id/tv_answered"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        tools:text="Answered"
-        android:textSize="25sp"
-        android:gravity="center"/>
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        tools:text="Answered" />
 
     <TextView
         android:id="@+id/tv_correct"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        tools:text="Correct Answer"
-        android:textSize="25sp"
-        android:gravity="center"/>
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        tools:text="Correct Answer" />
 
 </LinearLayout>

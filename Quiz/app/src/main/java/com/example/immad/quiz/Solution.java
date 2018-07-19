@@ -21,7 +21,12 @@ public class Solution extends AppCompatActivity {
         setContentView(R.layout.layout_solution);
         ButterKnife.bind(this);
 
-        RecyclerView.Adapter solutionsAdapter = new SolutionsAdapter(q.Answers,
+        Bundle extras = this.getIntent().getExtras();
+        int[] Answers = extras.getIntArray("Answer");
+
+        q = new Question();
+
+        SolutionsAdapter solutionsAdapter = new SolutionsAdapter(Answers,
                 q.Answer,
                 q.optA,
                 q.optB,

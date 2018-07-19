@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     int ques, score, ans, nextC;
 
+    public int[] Answers = new int[qAndA.Question.length];
+
+
     String q_nos = "Question: " + 1 + " out of " + qAndA.Question.length;
 
     @BindView(R.id.q_numbers)
@@ -105,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 ans = 4;
                 break;
         }
-        qAndA.Answers[ques] = ans;
+        Answers[ques] = ans;
         if (nextC <= qAndA.Question.length) {
             checkScore();
         }
@@ -140,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickSolutions(View view) {
+
         Intent solutions = new Intent(MainActivity.this, Solution.class);
+        solutions.putExtra("Answer", Answers);
         startActivity(solutions);
     }
 }

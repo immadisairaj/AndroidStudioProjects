@@ -70,9 +70,4 @@ public class Question {
     public int[] Answer = {
             4, 3, 2, 2, 1, 3, 4, 2, 3, 2
     };
-
-    public int[] Answers = {
-            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
-    };
-
 }

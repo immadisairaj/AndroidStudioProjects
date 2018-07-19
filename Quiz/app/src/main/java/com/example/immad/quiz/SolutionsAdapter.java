@@ -37,39 +37,39 @@ class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionVie
     @Override
     public void onBindViewHolder(@NonNull SolutionViewHolder solutionViewHolder, int i) {
         String qus = (i + 1) + " Question";
-        String ans = "";
-        String corr = "";
+        String ans;
+        String corr = null;
 
         switch (Answers[i]) {
-            case -1:
+            default:
                 ans = "Not Attempted";
                 break;
             case 1:
-                ans = 1 + " " + optA[i];
+                ans = 1 + ". " + optA[i];
                 break;
             case 2:
-                ans = 2 + " " + optB[i];
+                ans = 2 + ". " + optB[i];
                 break;
             case 3:
-                ans = 3 + " " + optC[i];
+                ans = 3 + ". " + optC[i];
                 break;
             case 4:
-                ans = 4 + " " + optD[i];
+                ans = 4 + ". " + optD[i];
                 break;
         }
 
         switch (Answer[i]) {
             case 1:
-                corr = 1 + " " + optA[i];
+                corr = 1 + ". " + optA[i];
                 break;
             case 2:
-                corr = 2 + " " + optB[i];
+                corr = 2 + ". " + optB[i];
                 break;
             case 3:
-                corr = 3 + " " + optC[i];
+                corr = 3 + ". " + optC[i];
                 break;
             case 4:
-                corr = 4 + " " + optD[i];
+                corr = 4 + ". " + optD[i];
                 break;
         }
 
