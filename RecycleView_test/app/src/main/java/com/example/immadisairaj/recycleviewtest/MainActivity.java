@@ -11,8 +11,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> fruitNameList;
-    private ArrayList<Integer> fruitImageList;
+    private ArrayList<Fruit> fruitsList;
     private RecyclerView.Adapter fruitAdapter;
 
     @BindView(R.id.rv_fruits_list_view)
@@ -24,55 +23,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        fruitAdapter = new FruitAdapter(setFruitImageList(), setFruitNameList());
+        fruitAdapter = new FruitAdapter(setFruitsList());
         fruitRecyclerView.setAdapter(fruitAdapter);
     }
 
-    public ArrayList<String> setFruitNameList() {
-        fruitNameList = new ArrayList<>();
-        fruitNameList.add("Apple");
-        fruitNameList.add("Banana");
-        fruitNameList.add("Blue Berries");
-        fruitNameList.add("Broccoli");
-        fruitNameList.add("Cabbage");
-        fruitNameList.add("Carrot");
-        fruitNameList.add("Cherries");
-        fruitNameList.add("Grapes");
-        fruitNameList.add("Lemon");
-        fruitNameList.add("Orange");
-        fruitNameList.add("Pear");
-        fruitNameList.add("Pomegranate");
-        fruitNameList.add("Raspberry");
-        fruitNameList.add("Strawberry");
-        fruitNameList.add("Tomato");
-        fruitNameList.add("Watermelon");
 
-        Log.v("Fruit List", fruitNameList.toString());
 
-        return fruitNameList;
-    }
+    public ArrayList<Fruit> setFruitsList() {
+        fruitsList = new ArrayList<>();
 
-    public ArrayList<Integer> setFruitImageList() {
-        fruitImageList = new ArrayList<>();
-        fruitImageList.add(R.drawable.apple);
-        fruitImageList.add(R.drawable.banana);
-        fruitImageList.add(R.drawable.blueberries);
-        fruitImageList.add(R.drawable.broccoli);
-        fruitImageList.add(R.drawable.cabbage);
-        fruitImageList.add(R.drawable.carrot);
-        fruitImageList.add(R.drawable.cherries);
-        fruitImageList.add(R.drawable.grapes);
-        fruitImageList.add(R.drawable.lemon);
-        fruitImageList.add(R.drawable.orange);
-        fruitImageList.add(R.drawable.pear);
-        fruitImageList.add(R.drawable.pomegranate);
-        fruitImageList.add(R.drawable.raspberry);
-        fruitImageList.add(R.drawable.strawberry);
-        fruitImageList.add(R.drawable.tomato);
-        fruitImageList.add(R.drawable.watermelon);
+        fruitsList.add(new Fruit("Apple", R.drawable.apple));
+        fruitsList.add(new Fruit("Banana", R.drawable.banana));
+        fruitsList.add(new Fruit("Blue Berries", R.drawable.blueberries));
+        fruitsList.add(new Fruit("Broccoli", R.drawable.broccoli));
+        fruitsList.add(new Fruit("Cabbage", R.drawable.cabbage));
+        fruitsList.add(new Fruit("Carrot", R.drawable.carrot));
+        fruitsList.add(new Fruit("Cherry", R.drawable.cherries));
+        fruitsList.add(new Fruit("Grapes", R.drawable.grapes));
+        fruitsList.add(new Fruit("Lemon", R.drawable.lemon));
+        fruitsList.add(new Fruit("Orange", R.drawable.orange));
+        fruitsList.add(new Fruit("Pear", R.drawable.pear));
+        fruitsList.add(new Fruit("Pomegranate", R.drawable.pomegranate));
+        fruitsList.add(new Fruit("Raspberry", R.drawable.raspberry));
+        fruitsList.add(new Fruit("Strawberry", R.drawable.strawberry));
+        fruitsList.add(new Fruit("Tomato", R.drawable.tomato));
+        fruitsList.add(new Fruit("Watermelon", R.drawable.watermelon));
 
-        Log.v("Fruit Image Id", fruitImageList.toString());
-
-        return fruitImageList;
+        return fruitsList;
     }
 }
