@@ -2,18 +2,19 @@ package com.example.immad.quiz;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class Solution extends AppCompatActivity {
 
-    @BindView(R.id.rv_solutions)
-    RecyclerView solutions;
+    Question q = new Question();
+    int[] Answers = new int[q.Question.length];
 
-    Question q;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,16 +23,13 @@ public class Solution extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Bundle extras = this.getIntent().getExtras();
-        int[] Answers = extras.getIntArray("Answer");
+        Answers = extras.getIntArray("Answer");
 
-        q = new Question();
+        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+    }
 
-        SolutionsAdapter solutionsAdapter = new SolutionsAdapter(Answers,
-                q.Answer,
-                q.optA,
-                q.optB,
-                q.optC,
-                q.optD);
-        solutions.setAdapter(solutionsAdapter);
+    public int[] getAnswer() {
+        return Answers;
     }
 }

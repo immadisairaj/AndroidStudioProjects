@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:padding="5dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/tv_question"
@@ -17,17 +17,17 @@
     <TextView
         android:id="@+id/tv_answered"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="19sp"
         tools:text="Answered" />
 
     <TextView
         android:id="@+id/tv_correct"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="28dp"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="19sp"
         tools:text="Correct Answer" />
 
 </LinearLayout>

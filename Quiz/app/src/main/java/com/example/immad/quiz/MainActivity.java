@@ -107,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.optionD:
                 ans = 4;
                 break;
-            default: ans = 0;
+            default:
+                ans = 0;
         }
         Answers[ques] = ans;
         if (nextC <= qAndA.Question.length) {

@@ -11,8 +11,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionViewHolder> {
-
+public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder> {
     private int[] Answers;
     private int[] Answer;
     private String[] optA;
@@ -20,7 +19,7 @@ class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionVie
     private String[] optC;
     private String[] optD;
 
-    SolutionsAdapter(int[] answers, int[] answer, String[] optionsA, String[] optionsB, String[] optionsC, String[] optionsD) {
+    AnswerAdapter(int[] answers, int[] answer, String[] optionsA, String[] optionsB, String[] optionsC, String[] optionsD) {
         Answers = answers;
         Answer = answer;
         optA = optionsA;
@@ -35,7 +34,7 @@ class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionVie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SolutionViewHolder solutionViewHolder, int i) {
+    public void onBindViewHolder(@NonNull AnswerViewHolder answerViewHolder, int i) {
         String qus = (i + 1) + " Question";
         String ans;
         String corr = null;
@@ -73,24 +72,24 @@ class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionVie
                 break;
         }
 
-        solutionViewHolder.question.setText(qus);
-        solutionViewHolder.answered.setText(ans);
-        solutionViewHolder.correct.setText(corr);
+        answerViewHolder.question.setText(qus);
+        answerViewHolder.answered.setText(ans);
+        answerViewHolder.correct.setText(corr);
 
         if (Answer[i] == Answers[i])
-            solutionViewHolder.answered.setTextColor(Color.GREEN);
+            answerViewHolder.answered.setTextColor(Color.GREEN);
         else
-            solutionViewHolder.answered.setTextColor(Color.RED);
+            answerViewHolder.answered.setTextColor(Color.RED);
     }
 
     @NonNull
     @Override
-    public SolutionViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new SolutionViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.relative, viewGroup, false));
+    public AnswerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        return new AnswerViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.relative, viewGroup, false));
     }
 
 
-    class SolutionViewHolder extends RecyclerView.ViewHolder {
+    class AnswerViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_question)
         TextView question;
@@ -101,11 +100,10 @@ class SolutionsAdapter extends RecyclerView.Adapter<SolutionsAdapter.SolutionVie
         @BindView(R.id.tv_correct)
         TextView correct;
 
-        SolutionViewHolder(@NonNull View itemView) {
+        AnswerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ButterKnife.bind(this, itemView);
         }
     }
-
 }
