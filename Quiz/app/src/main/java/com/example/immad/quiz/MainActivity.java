@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     int ques, score, ans, nextC;
 
-    public int[] Answers = new int[qAndA.Question.length];
+    ArrayList<Integer> Answers;
 
 
     String q_nos = "Question: " + 1 + " out of " + qAndA.Question.length;
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         opB.setText(qAndA.optB[0]);
         opC.setText(qAndA.optC[0]);
         opD.setText(qAndA.optD[0]);
+
+        Answers = new ArrayList<>();
 
         ques = 0;
         score = 0;
@@ -110,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 ans = 0;
         }
-        Answers[ques] = ans;
+        Answers.add(ans);
         if (nextC <= qAndA.Question.length) {
             checkScore();
         }
@@ -145,9 +149,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickSolutions(View view) {
-
-        Intent solutions = new Intent(MainActivity.this, Solution.class);
-        solutions.putExtra("Answer", Answers);
+        Intent solutions = new Intent(this, Solution.class);
+        solutions.putIntegerArrayListExtra("Answer", Answers);
         startActivity(solutions);
     }
 }

@@ -5,13 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class Solution extends AppCompatActivity {
 
-    Question q = new Question();
-    int[] Answers = new int[q.Question.length];
+    static ArrayList<Integer> Answers;
 
     @BindView(R.id.viewpager)
     ViewPager viewPager;
@@ -22,14 +23,13 @@ public class Solution extends AppCompatActivity {
         setContentView(R.layout.layout_solution);
         ButterKnife.bind(this);
 
-        Bundle extras = this.getIntent().getExtras();
-        Answers = extras.getIntArray("Answer");
+        Answers = getIntent().getIntegerArrayListExtra("Answer");
 
         SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
     }
 
-    public int[] getAnswer() {
+    public static ArrayList<Integer> getAnswer() {
         return Answers;
     }
 }

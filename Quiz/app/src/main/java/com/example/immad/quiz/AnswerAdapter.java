@@ -8,18 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder> {
-    private int[] Answers;
+    private ArrayList<Integer> Answers;
     private int[] Answer;
     private String[] optA;
     private String[] optB;
     private String[] optC;
     private String[] optD;
 
-    AnswerAdapter(int[] answers, int[] answer, String[] optionsA, String[] optionsB, String[] optionsC, String[] optionsD) {
+    AnswerAdapter(ArrayList<Integer> answers, int[] answer, String[] optionsA, String[] optionsB, String[] optionsC, String[] optionsD) {
         Answers = answers;
         Answer = answer;
         optA = optionsA;
@@ -30,7 +32,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.AnswerView
 
     @Override
     public int getItemCount() {
-        return Answers.length;
+        return Answer.length;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.AnswerView
         String ans;
         String corr = null;
 
-        switch (Answers[i]) {
+        switch (Answers.get(i)) {
             default:
                 ans = "Not Attempted";
                 break;
@@ -76,7 +78,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.AnswerView
         answerViewHolder.answered.setText(ans);
         answerViewHolder.correct.setText(corr);
 
-        if (Answer[i] == Answers[i])
+        if (Answer[i] == Answers.get(i))
             answerViewHolder.answered.setTextColor(Color.GREEN);
         else
             answerViewHolder.answered.setTextColor(Color.RED);

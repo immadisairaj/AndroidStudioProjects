@@ -9,13 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class AnswersFragment extends Fragment {
-
-    Solution solution = new Solution();
 
     @BindView(R.id.rv_answers)
     RecyclerView solutions;
@@ -29,7 +29,7 @@ public class AnswersFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        int[] Answers = solution.getAnswer();
+        ArrayList<Integer> Answers = Solution.getAnswer();
 
         q = new Question();
 
