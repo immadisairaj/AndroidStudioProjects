@@ -80,6 +80,12 @@ public final class QueryUtils {
         // Create URL object
         URL url = createUrl(requestUrl);
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
