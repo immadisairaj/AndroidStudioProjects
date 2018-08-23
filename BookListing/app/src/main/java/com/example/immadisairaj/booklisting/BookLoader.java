@@ -17,7 +17,9 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
 
     @Override
     protected void onStartLoading() {
-        forceLoad();
+        if(mUrl != null) {
+            forceLoad();
+        }
     }
 
     @Nullable

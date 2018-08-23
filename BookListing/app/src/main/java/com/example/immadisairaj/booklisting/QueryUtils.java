@@ -32,7 +32,11 @@ public final class QueryUtils {
             JSONObject root = new JSONObject(bookJSON);
             for (int i = 0; i < root.getJSONArray("items").length(); i++) {
                 JSONObject items = root.getJSONArray("items").getJSONObject(i).getJSONObject("volumeInfo");
-                books.add(new Book(items.getString("title"), items.getJSONObject("volumeInfo").getString("subtitle"), items.getJSONArray("authors").getString(0), items.getString("canonicalVolumeLink")));
+                String description = "";
+                if(items.has("description")) {
+                    description = items.getString("description");
+                }
+                books.add(new Book(items.getString("title"), description, items.getJSONArray("authors").getString(0), items.getString("canonicalVolumeLink")));
             }
 
         } catch (JSONException e) {

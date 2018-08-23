@@ -27,7 +27,7 @@
             android:maxLines="1"
             android:textAllCaps="true"
             android:textColor="@color/mainColor"
-            android:textSize="20sp"
+            android:textSize="15sp"
             tools:text="Title" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/subColor"
-            android:textSize="16sp"
+            android:textSize="10sp"
             tools:text="Long placeholder description that should wrap to more than 2 lines of text" />
 
     </LinearLayout>

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -28,12 +29,14 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private BookAdapter mAdapter;
 
-    private String REQUEST_URL = null;
+    private String REQUEST_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        REQUEST_URL = "";
 
         ListView bookListView = findViewById(R.id.list);
 
@@ -43,18 +46,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         mAdapter = new BookAdapter(this, new ArrayList<>());
 
         bookListView.setAdapter(mAdapter);
-
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            LoaderManager loaderManager = getLoaderManager();
-            loaderManager.initLoader(BOOK_LOADER_ID, null, this);
-        } else {
-            View loadingIndicator = findViewById(R.id.loading_indicator);
-            loadingIndicator.setVisibility(View.GONE);
-            mEmptyStateTextView.setText(R.string.no_internet_connection);
-        }
 
         bookListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             Book currentBook = mAdapter.getItem(position);
@@ -77,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
+        mEmptyStateTextView.setVisibility(View.VISIBLE);
+
         mEmptyStateTextView.setText(R.string.no_books);
 
         mAdapter.clear();
@@ -91,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         mAdapter.clear();
     }
 
+
+
     public void search(View view) {
         EditText bookName = findViewById(R.id.et_book);
         String name = bookName.getText().toString();
@@ -98,7 +93,29 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             TextView empty = findViewById(R.id.empty_view);
             empty.setText("Enter a Book Name to Search");
         } else {
-            REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q" + name + "&maxResults=20";
+            REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=" + name + "&maxResults=20";
+            Log.v("URL", REQUEST_URL);
+
+            ListView bookListView = findViewById(R.id.list);
+            mEmptyStateTextView = findViewById(R.id.empty_view);
+            bookListView.setEmptyView(mEmptyStateTextView);
+            mAdapter = new BookAdapter(this, new ArrayList<>());
+            bookListView.setAdapter(mAdapter);
+
+            View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.VISIBLE);
+            mEmptyStateTextView.setVisibility(View.GONE);
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isConnected()) {
+
+                LoaderManager loaderManager = getLoaderManager();
+                loaderManager.initLoader(BOOK_LOADER_ID, null, this);
+            } else {
+                loadingIndicator.setVisibility(View.GONE);
+                mEmptyStateTextView.setText(R.string.no_internet_connection);
+            }
         }
     }
 
