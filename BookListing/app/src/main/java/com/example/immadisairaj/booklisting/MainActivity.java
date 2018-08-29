@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private String REQUEST_URL;
 
+    private NetworkInfo networkInfo;
+
+    private ArrayList<Book> bookList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +47,15 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         mEmptyStateTextView = findViewById(R.id.empty_view);
         bookListView.setEmptyView(mEmptyStateTextView);
 
-        mAdapter = new BookAdapter(this, new ArrayList<>());
+        bookList = new ArrayList<>();
+
+        mAdapter = new BookAdapter(this, bookList);
 
         bookListView.setAdapter(mAdapter);
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        networkInfo = connMgr.getActiveNetworkInfo();
 
         bookListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             Book currentBook = mAdapter.getItem(position);
@@ -91,7 +101,10 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         String name = bookName.getText().toString();
         if (name.isEmpty()) {
             TextView empty = findViewById(R.id.empty_view);
+            ListView bookListView = findViewById(R.id.list);
+            bookListView.setVisibility(View.GONE);
             empty.setText("Enter a Book Name to Search");
+            empty.setVisibility(View.VISIBLE);
         } else {
             REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=" + name + "&maxResults=20";
             Log.v("URL", REQUEST_URL);
@@ -99,15 +112,16 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             ListView bookListView = findViewById(R.id.list);
             mEmptyStateTextView = findViewById(R.id.empty_view);
             bookListView.setEmptyView(mEmptyStateTextView);
-            mAdapter = new BookAdapter(this, new ArrayList<>());
+            bookList.clear();
+            mAdapter.clear();
+            mAdapter.notifyDataSetChanged();
+            bookList = new ArrayList<>();
+            mAdapter = new BookAdapter(this, bookList);
             bookListView.setAdapter(mAdapter);
 
             View loadingIndicator = findViewById(R.id.loading_indicator);
             loadingIndicator.setVisibility(View.VISIBLE);
             mEmptyStateTextView.setVisibility(View.GONE);
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
             if (networkInfo != null && networkInfo.isConnected()) {
 
                 LoaderManager loaderManager = getLoaderManager();
