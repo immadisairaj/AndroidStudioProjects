@@ -48,16 +48,22 @@ public class SubmissionActivity extends AppCompatActivity {
 
                 Submission submission = response.body();
 
-                String status = submission.getStatus();
-                if(status.equals("OK")) {
-                    View loadingIndicator = findViewById(R.id.loading_indicator);
-                    loadingIndicator.setVisibility(View.INVISIBLE);
-                    if(submission.getResult().size() == 0) {
-                        TextView mEmptyView = findViewById(R.id.empty_view);
-                        mEmptyView.setVisibility(View.VISIBLE);
+                String status;
+                if (submission != null) {
+                    status = submission.getStatus();
+                    if(status.equals("OK")) {
+                        View loadingIndicator = findViewById(R.id.loading_indicator);
+                        loadingIndicator.setVisibility(View.INVISIBLE);
+                        if(submission.getResult().size() == 0) {
+                            TextView mEmptyView = findViewById(R.id.empty_view);
+                            mEmptyView.setVisibility(View.VISIBLE);
+                        }
+                        Toast.makeText(getApplicationContext(), handle, Toast.LENGTH_SHORT).show();
+                        showSubmissions(submission);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Wrong handle, Try Again", Toast.LENGTH_SHORT).show();
+                        SubmissionActivity.super.onBackPressed();
                     }
-                    Toast.makeText(getApplicationContext(), handle, Toast.LENGTH_SHORT).show();
-                    showSubmissions(submission);
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong handle, Try Again", Toast.LENGTH_SHORT).show();
                     SubmissionActivity.super.onBackPressed();
