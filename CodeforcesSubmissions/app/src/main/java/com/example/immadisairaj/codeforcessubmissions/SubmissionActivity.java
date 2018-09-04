@@ -1,5 +1,6 @@
 package com.example.immadisairaj.codeforcessubmissions;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -23,6 +24,9 @@ public class SubmissionActivity extends AppCompatActivity {
 
     public String handle;
 
+    private SwipeRefreshLayout swipeContainer;
+
+    private SubmissionAdapter submissionAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,27 @@ public class SubmissionActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         handle = bundle.getString("handle");
 
+        submissionAdapter = new SubmissionAdapter();
+
+        fetchApi();
+
+        swipeContainer = findViewById(R.id.swipeContainer);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+
+            public void onRefresh() {
+
+                submissionAdapter.clear();
+
+                fetchApi();
+            }
+
+        });
+    }
+
+    public void fetchApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -54,6 +79,7 @@ public class SubmissionActivity extends AppCompatActivity {
                 if (submission != null) {
                     status = submission.getStatus();
                     if(status.equals("OK")) {
+                        swipeContainer.setRefreshing(false);
                         View loadingIndicator = findViewById(R.id.loading_indicator);
                         loadingIndicator.setVisibility(View.INVISIBLE);
                         if(submission.getResult().size() == 0) {

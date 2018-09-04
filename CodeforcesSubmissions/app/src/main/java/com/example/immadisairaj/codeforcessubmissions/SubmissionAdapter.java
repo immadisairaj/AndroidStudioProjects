@@ -21,6 +21,14 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
         this.submissionList = submissionList;
     }
 
+    public SubmissionAdapter() {
+    }
+
+    public void clear() {
+        notifyDataSetChanged();
+    }
+
+
     @NonNull
     @Override
     public SubmissionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
