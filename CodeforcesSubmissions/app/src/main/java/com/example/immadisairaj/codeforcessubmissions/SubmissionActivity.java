@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -86,6 +88,8 @@ public class SubmissionActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rv_submission);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         SubmissionAdapter submissionAdapter = new SubmissionAdapter(result);
-        recyclerView.setAdapter(submissionAdapter);
+        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(submissionAdapter);
+        alphaAdapter.setDuration(1500);
+        recyclerView.setAdapter(new ScaleInAnimationAdapter(alphaAdapter));
     }
 }
