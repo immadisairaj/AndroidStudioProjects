@@ -84,8 +84,10 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         mAdapter.clear();
 
+        bookList = (ArrayList<Book>) books;
+
         if (books != null && !books.isEmpty()) {
-            mAdapter.addAll(books);
+            mAdapter.addAll(bookList);
         }
     }
 
