@@ -24,6 +24,8 @@ public class SubmissionActivity extends AppCompatActivity {
 
     public String handle;
 
+    private int countOfCalls;
+
     private SwipeRefreshLayout swipeContainer;
 
     private SubmissionAdapter submissionAdapter;
@@ -32,6 +34,8 @@ public class SubmissionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
+
+        countOfCalls = 0;
 
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.VISIBLE);
@@ -79,6 +83,7 @@ public class SubmissionActivity extends AppCompatActivity {
                 if (submission != null) {
                     status = submission.getStatus();
                     if(status.equals("OK")) {
+                        countOfCalls++;
                         swipeContainer.setRefreshing(false);
                         View loadingIndicator = findViewById(R.id.loading_indicator);
                         loadingIndicator.setVisibility(View.INVISIBLE);
@@ -101,8 +106,10 @@ public class SubmissionActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Submission> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Check Network Settings", Toast.LENGTH_SHORT).show();
-                SubmissionActivity.super.onBackPressed();
+                swipeContainer.setRefreshing(false);
+                Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                if(countOfCalls == 0)
+                    SubmissionActivity.super.onBackPressed();
             }
         });
     }
