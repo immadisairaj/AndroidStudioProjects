@@ -101,7 +101,7 @@ public class SubmissionActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Submission> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Check Network Settings", Toast.LENGTH_SHORT).show();
                 SubmissionActivity.super.onBackPressed();
             }
         });
