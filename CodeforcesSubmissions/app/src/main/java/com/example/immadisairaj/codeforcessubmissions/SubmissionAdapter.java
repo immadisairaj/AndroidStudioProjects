@@ -1,5 +1,6 @@
 package com.example.immadisairaj.codeforcessubmissions;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,27 +29,45 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
 
     @Override
     public void onBindViewHolder(@NonNull SubmissionViewHolder holder, int position) {
+
         String qName, qCode, tags, lang, verdict, time, memory;
+
         qName = submissionList.get(position).getProblem().getName();
         holder.mQName.setText(qName);
-        qCode = submissionList.get(position).getProblem().getContestId() +
-                submissionList.get(position).getProblem().getIndex();
+
+        String id = submissionList.get(position).getProblem().getContestId() + "";
+        if (id.equals("null")) {
+            qCode = submissionList.get(position).getProblem().getIndex();
+        } else {
+            qCode = id +
+                    submissionList.get(position).getProblem().getIndex();
+        }
         holder.mQCode.setText(qCode);
+
         List<String> tagsList = submissionList.get(position).getProblem().getTags();
-        if(! tagsList.isEmpty()) {
-            tags = tagsList.get(0);
+        if (!tagsList.isEmpty()) {
+            StringBuilder tagsBuilder = new StringBuilder(tagsList.get(0));
             for (int i = 1; i < tagsList.size(); i++)
-                tags = tags + ", " + tagsList.get(i);
+                tagsBuilder.append(", ").append(tagsList.get(i));
+            tags = tagsBuilder.toString();
         } else
             tags = "no tags";
         holder.mTags.setText(tags);
+
         lang = submissionList.get(position).getProgrammingLanguage();
         holder.mLang.setText(lang);
+
         verdict = submissionList.get(position).getVerdict();
         holder.mVerdict.setText(verdict);
-        time = "Time: " + submissionList.get(position).getTimeConsumedMillis().toString();
+        if(verdict.equals("OK"))
+            holder.mVerdict.setTextColor(Color.parseColor("#228B22"));
+        else
+            holder.mVerdict.setTextColor(Color.RED);
+
+        time = "Time: " + submissionList.get(position).getTimeConsumedMillis().toString() + " ms";
         holder.mTime.setText(time);
-        memory = "Memory: " + submissionList.get(position).getMemoryConsumedBytes().toString();
+
+        memory = "Memory: " + submissionList.get(position).getMemoryConsumedBytes().toString() + " B";
         holder.mMemory.setText(memory);
     }
 

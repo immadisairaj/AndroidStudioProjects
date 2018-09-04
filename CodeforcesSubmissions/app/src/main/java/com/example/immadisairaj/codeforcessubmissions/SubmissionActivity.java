@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -24,6 +26,9 @@ public class SubmissionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
+
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.VISIBLE);
 
         Bundle bundle = getIntent().getExtras();
         handle = bundle.getString("handle");
@@ -45,6 +50,12 @@ public class SubmissionActivity extends AppCompatActivity {
 
                 String status = submission.getStatus();
                 if(status.equals("OK")) {
+                    View loadingIndicator = findViewById(R.id.loading_indicator);
+                    loadingIndicator.setVisibility(View.INVISIBLE);
+                    if(submission.getResult().size() == 0) {
+                        TextView mEmptyView = findViewById(R.id.empty_view);
+                        mEmptyView.setVisibility(View.VISIBLE);
+                    }
                     Toast.makeText(getApplicationContext(), handle, Toast.LENGTH_SHORT).show();
                     showSubmissions(submission);
                 } else {
