@@ -22,6 +22,7 @@
         </activity>
         <activity
             android:name=".SubmissionActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
     </application>
 
