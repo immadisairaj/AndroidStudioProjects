@@ -87,10 +87,11 @@ public class SubmissionActivity extends AppCompatActivity {
                         swipeContainer.setRefreshing(false);
                         View loadingIndicator = findViewById(R.id.loading_indicator);
                         loadingIndicator.setVisibility(View.INVISIBLE);
-                        if(submission.getResult().size() == 0) {
-                            TextView mEmptyView = findViewById(R.id.empty_view);
+                        TextView mEmptyView = findViewById(R.id.empty_view);
+                        if(submission.getResult().size() == 0)
                             mEmptyView.setVisibility(View.VISIBLE);
-                        }
+                        else
+                            mEmptyView.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), handle, Toast.LENGTH_SHORT).show();
                         showSubmissions(submission);
                     } else {
