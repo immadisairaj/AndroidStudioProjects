@@ -26,6 +26,7 @@ public class Phone {
 
     public Phone() {
     }
+
     public Phone(Integer id, String model, String manufacturer, Integer price, Integer quantity, String image) {
         super();
         this.id = id;

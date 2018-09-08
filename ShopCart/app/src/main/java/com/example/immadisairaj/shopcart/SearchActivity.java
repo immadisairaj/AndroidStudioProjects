@@ -26,25 +26,25 @@ public class SearchActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
 
         String string = manufacturer.getText().toString();
-        if(string.equals("")) {
+        if (string.equals("")) {
             string = null;
         }
         bundle.putString("manufacturer", string);
 
         string = model.getText().toString();
-        if(string.equals("")) {
+        if (string.equals("")) {
             string = null;
         }
         bundle.putString("model", string);
 
         string = min_price.getText().toString();
-        if(string.equals("")) {
+        if (string.equals("")) {
             string = null;
         }
         bundle.putString("min_price", string);
 
         string = max_price.getText().toString();
-        if(string.equals("")) {
+        if (string.equals("")) {
             string = null;
         }
         bundle.putString("max_price", string);

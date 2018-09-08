@@ -21,4 +21,14 @@ public interface ApiInterface {
             @Query("max-price") Integer maxPrice
     );
 
+    @GET("buy")
+    Call<Buy> getBuy(
+            @Query("model") String model,
+            @Query("username") String username,
+            @Query("qty") Integer quantity
+    );
+
+    @GET("getSalesRecords")
+    Call<List<Sales>> getSales();
+
 }

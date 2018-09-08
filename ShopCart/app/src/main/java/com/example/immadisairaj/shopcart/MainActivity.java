@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -48,19 +47,19 @@ public class MainActivity extends AppCompatActivity {
         ApiInterface api = retrofit.create(ApiInterface.class);
         Call<List<Phone>> call;
 
-        if(bundle != null) {
+        if (bundle != null) {
             String manufacturer = bundle.getString("manufacturer");
             String model = bundle.getString("model");
             Integer min_price = null;
             String price = bundle.getString("min_price");
-            if(price != null)
+            if (price != null)
                 min_price = Integer.parseInt(price);
             Integer max_price = null;
             price = bundle.getString("max_price");
-            if(price != null)
+            if (price != null)
                 max_price = Integer.parseInt(price);
-            if(manufacturer!=null || model!=null || min_price!=null || max_price!=null) {
-                call = api.getPhone(manufacturer,model,min_price,max_price);
+            if (manufacturer != null || model != null || min_price != null || max_price != null) {
+                call = api.getPhone(manufacturer, model, min_price, max_price);
             } else {
                 call = api.getPhone();
             }
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
                 loadingIndicator.setVisibility(View.INVISIBLE);
 
-                if(phone.size() == 0) {
+                if (phone.size() == 0) {
                     mEmptyView.setText("No Phones Available");
                     mEmptyView.setVisibility(View.VISIBLE);
                 } else {
@@ -100,10 +99,11 @@ public class MainActivity extends AppCompatActivity {
     public void renderPhones(List<Phone> phone) {
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        PhoneAdapter submissionAdapter = new PhoneAdapter(phone);
-        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(submissionAdapter);
+        PhoneAdapter phoneAdapter = new PhoneAdapter(phone);
+        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(phoneAdapter);
         alphaAdapter.setDuration(1500);
         recyclerView.setAdapter(new ScaleInAnimationAdapter(alphaAdapter));
+
 
     }
 
@@ -126,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.search) {
             Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.sales) {
+            Intent intent = new Intent(this, SalesActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

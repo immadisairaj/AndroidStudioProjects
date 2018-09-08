@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvs_invoice"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                tools:text="Invoice" />
+
+            <TextView
+                android:id="@+id/tvs_model"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                tools:text="Model" />
+
+            <TextView
+                android:id="@+id/tvs_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                tools:text="Quantity" />
+
+            <TextView
+                android:id="@+id/tvs_username"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                tools:text="Username" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

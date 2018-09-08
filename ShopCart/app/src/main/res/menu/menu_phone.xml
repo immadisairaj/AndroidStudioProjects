@@ -8,4 +8,10 @@
         android:title="Search"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/sales"
+        android:icon="@drawable/sales"
+        android:title="Sales"
+        app:showAsAction="ifRoom" />
+
 </menu>
