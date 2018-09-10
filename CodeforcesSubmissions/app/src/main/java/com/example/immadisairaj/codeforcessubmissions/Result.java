@@ -8,6 +8,8 @@ public class Result {
     private String verdict;
     @SerializedName("problem")
     private Problem problem;
+    @SerializedName("creationTimeSeconds")
+    private Integer creationTimeSeconds;
     @SerializedName("programmingLanguage")
     private String programmingLanguage;
     @SerializedName("timeConsumedMillis")
@@ -15,9 +17,10 @@ public class Result {
     @SerializedName("memoryConsumedBytes")
     private Integer memoryConsumedBytes;
 
-    public Result(String verdict, Problem problem, String programmingLanguage, int timeConsumedMillis, int memoryConsumedBytes) {
+    public Result(String verdict, Problem problem, Integer creationTimeSeconds, String programmingLanguage, int timeConsumedMillis, int memoryConsumedBytes) {
         this.verdict = verdict;
         this.problem = problem;
+        this.creationTimeSeconds = creationTimeSeconds;
         this.programmingLanguage = programmingLanguage;
         this.timeConsumedMillis = timeConsumedMillis;
         this.memoryConsumedBytes = memoryConsumedBytes;
@@ -29,6 +32,10 @@ public class Result {
 
     public Problem getProblem() {
         return problem;
+    }
+
+    public Integer getCreationTimeSeconds() {
+        return creationTimeSeconds;
     }
 
     public String getProgrammingLanguage() {

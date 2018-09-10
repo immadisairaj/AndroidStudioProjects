@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,7 +40,7 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
     @Override
     public void onBindViewHolder(@NonNull SubmissionViewHolder holder, int position) {
 
-        String qName, qCode, tags, lang, verdict, time, memory;
+        String qName, qCode, tags, creation_time, lang, verdict, time, memory;
 
         qName = submissionList.get(position).getProblem().getName();
         holder.mQName.setText(qName);
@@ -61,6 +63,14 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
         } else
             tags = "no tags";
         holder.mTags.setText(tags);
+
+        Integer cr_time = submissionList.get(position).getCreationTimeSeconds();
+        Date dateObject = new Date((long) cr_time*1000);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+        creation_time = dateFormat.format(dateObject) + " ";
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        creation_time += timeFormat.format(dateObject);
+        holder.mCreationTime.setText(creation_time);
 
         lang = submissionList.get(position).getProgrammingLanguage();
         holder.mLang.setText(lang);
@@ -92,6 +102,8 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
         TextView mQCode;
         @BindView(R.id.tv_tags)
         TextView mTags;
+        @BindView(R.id.tv_creation_time)
+        TextView mCreationTime;
         @BindView(R.id.tv_lang)
         TextView mLang;
         @BindView(R.id.tv_verdict)
