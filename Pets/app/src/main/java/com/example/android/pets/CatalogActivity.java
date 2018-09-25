@@ -18,7 +18,6 @@ package com.example.android.pets;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import com.example.android.pets.data.PetContract;
 import com.example.android.pets.data.PetContract.PetEntry;
@@ -55,7 +55,9 @@ public class CatalogActivity extends AppCompatActivity {
             }
         });
 
-        mDbHelper = new PetDbHelper(this);
+        ListView petListView = findViewById(R.id.list);
+        View emptyView = findViewById(R.id.empty_view);
+        petListView.setEmptyView(emptyView);
     }
 
     @Override
@@ -90,8 +92,6 @@ public class CatalogActivity extends AppCompatActivity {
 
     private void displayDatabaseInfo() {
 
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
         String[] projection = {
                 PetEntry._ID,
                 PetEntry.COLUMN_PET_NAME,
@@ -101,6 +101,12 @@ public class CatalogActivity extends AppCompatActivity {
         };
 
         Cursor cursor = getContentResolver().query(PetEntry.CONTENT_URI, projection, null, null, null);
+
+        ListView petListView = findViewById(R.id.list);
+
+        PetCursorAdapter adapter = new PetCursorAdapter(this, cursor);
+
+        petListView.setAdapter(adapter);
     }
 
     private void insertPet() {

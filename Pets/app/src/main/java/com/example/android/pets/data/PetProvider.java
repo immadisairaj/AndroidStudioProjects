@@ -13,8 +13,6 @@ import com.example.android.pets.data.PetContract.PetEntry;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.net.URL;
-
 public class PetProvider extends ContentProvider {
 
     private PetDbHelper mDbHelper;
@@ -128,7 +126,6 @@ public class PetProvider extends ContentProvider {
         }
 
         if (values.containsKey(PetEntry.COLUMN_PET_WEIGHT)) {
-            // Check that the weight is greater than or equal to 0 kg
             Integer weight = values.getAsInteger(PetEntry.COLUMN_PET_WEIGHT);
             if (weight != null && weight < 0) {
                 throw new IllegalArgumentException("Pet requires valid weight");
