@@ -2,4 +2,5 @@
     <string name="app_name">Codeforces</string>
     <string name="enter_handle">Enter Codeforces Handle to view your previous Submissions</string>
     <string name="enter_handle_again">Don\'t leave it empty</string>
+    <string name="only_one_handle">Give only one handle</string>
 </resources>

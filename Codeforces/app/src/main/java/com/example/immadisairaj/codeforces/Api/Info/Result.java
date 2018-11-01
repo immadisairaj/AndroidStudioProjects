@@ -1,4 +1,4 @@
-package com.example.immadisairaj.codeforcessubmissions.Api.Info;
+package com.example.immadisairaj.codeforces.Api.Info;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,7 +1,7 @@
-package com.example.immadisairaj.codeforcessubmissions.Api;
+package com.example.immadisairaj.codeforces.Api;
 
-import com.example.immadisairaj.codeforcessubmissions.Api.Info.Info;
-import com.example.immadisairaj.codeforcessubmissions.Api.Submission.Submission;
+import com.example.immadisairaj.codeforces.Api.Info.Info;
+import com.example.immadisairaj.codeforces.Api.Submission.Submission;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

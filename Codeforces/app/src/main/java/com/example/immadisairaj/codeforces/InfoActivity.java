@@ -1,4 +1,4 @@
-package com.example.immadisairaj.codeforcessubmissions;
+package com.example.immadisairaj.codeforces;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,9 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.immadisairaj.codeforcessubmissions.Api.Api;
-import com.example.immadisairaj.codeforcessubmissions.Api.Info.Info;
-import com.example.immadisairaj.codeforcessubmissions.Api.Info.Result;
+import com.example.immadisairaj.codeforces.Api.Info.Info;
+import com.example.immadisairaj.codeforces.Api.Info.Result;
+import com.example.immadisairaj.codeforces.Api.Api;
+import com.example.immadisairaj.codeforcessubmissions.R;
 
 import java.util.List;
 

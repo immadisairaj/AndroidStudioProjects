@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.immadisairaj.codeforces.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".InfoActivity"
-            android:parentActivityName=".MainActivity"
+            android:name="com.example.immadisairaj.codeforces.InfoActivity"
+            android:parentActivityName="com.example.immadisairaj.codeforces.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SubmissionActivity"
-            android:parentActivityName=".InfoActivity"
+            android:name="com.example.immadisairaj.codeforces.SubmissionActivity"
+            android:parentActivityName="com.example.immadisairaj.codeforces.InfoActivity"
             android:screenOrientation="portrait" />
     </application>
 

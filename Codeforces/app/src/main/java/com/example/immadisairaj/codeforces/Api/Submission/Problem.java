@@ -1,4 +1,4 @@
-package com.example.immadisairaj.codeforcessubmissions.Api.Submission;
+package com.example.immadisairaj.codeforces.Api.Submission;
 
 import com.google.gson.annotations.SerializedName;
 

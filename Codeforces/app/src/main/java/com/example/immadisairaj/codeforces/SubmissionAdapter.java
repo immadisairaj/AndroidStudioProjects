@@ -1,4 +1,4 @@
-package com.example.immadisairaj.codeforcessubmissions;
+package com.example.immadisairaj.codeforces;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.immadisairaj.codeforcessubmissions.Api.Submission.Result;
+import com.example.immadisairaj.codeforces.Api.Submission.Result;
+import com.example.immadisairaj.codeforcessubmissions.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

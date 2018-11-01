@@ -1,24 +1,17 @@
-package com.example.immadisairaj.codeforcessubmissions.Api.Info;
+package com.example.immadisairaj.codeforces.Api.Submission;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-public class Info {
+public class Submission {
 
     @SerializedName("status")
-    @Expose
     private String status;
     @SerializedName("result")
-    @Expose
-    private List<Result> result = null;
+    private List<Result> result;
 
-    public Info() {
-    }
-
-    public Info(String status, List<Result> result) {
-        super();
+    public Submission(String status, List<Result> result) {
         this.status = status;
         this.result = result;
     }
@@ -30,6 +23,4 @@ public class Info {
     public List<Result> getResult() {
         return result;
     }
-
-
 }
