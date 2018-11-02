@@ -1,6 +1,8 @@
 package com.example.immadisairaj.codeforces;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +43,7 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SubmissionViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final SubmissionViewHolder holder, final int position) {
 
         String qName, qCode, tags, creation_time, lang, verdict, time, memory;
 
@@ -90,6 +92,24 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
 
         memory = "Memory: " + submissionList.get(position).getMemoryConsumedBytes().toString() + " B";
         holder.mMemory.setText(memory);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://codeforces.com/";
+                if(submissionList.get(position).getProblem().getProblemsetName() == null) {
+                    if(submissionList.get(position).getProblem().getContestId() >= 100000)
+                        url += "gym/" + submissionList.get(position).getProblem().getContestId() + "/problem/" + submissionList.get(position).getProblem().getIndex();
+                    else
+                        url += "problemset/problem/" + submissionList.get(position).getProblem().getContestId() + "/" + submissionList.get(position).getProblem().getIndex();
+                } else {
+                    url += "problemsets/acmsguru/problem/99999/" + submissionList.get(position).getProblem().getIndex();
+                }
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

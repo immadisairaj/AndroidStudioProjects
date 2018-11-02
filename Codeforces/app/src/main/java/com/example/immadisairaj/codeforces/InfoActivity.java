@@ -120,13 +120,22 @@ public class InfoActivity extends AppCompatActivity {
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         TextView textView = findViewById(R.id.tv_name_info);
-        textView.setText("Name : " + result.getFirstName() + " " + result.getLastName());
+        if(result.getFirstName() != null)
+            textView.setText("Name : " + result.getFirstName() + " " + result.getLastName());
+        else
+            textView.setText("Name : Not Provided by user");
 
         textView = findViewById(R.id.tv_country_info);
-        textView.setText("City : " + result.getCity() + ", " + result.getCountry());
+        if(result.getCity() != null)
+            textView.setText("City : " + result.getCity() + ", " + result.getCountry());
+        else
+            textView.setText("City : Not Provided by user");
 
         textView = findViewById(R.id.tv_organization_info);
-        textView.setText("Organization : " + result.getOrganization());
+        if(result.getOrganization() != null)
+            textView.setText("Organization : " + result.getOrganization());
+        else
+            textView.setText("Organization : Not Provided by user");
 
         textView = findViewById(R.id.tv_rating_info);
         textView.setText("Rating : " + result.getRating().toString());

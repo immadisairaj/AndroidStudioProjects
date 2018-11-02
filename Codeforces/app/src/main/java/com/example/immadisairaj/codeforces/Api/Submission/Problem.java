@@ -14,12 +14,15 @@ public class Problem {
     private String name;
     @SerializedName("tags")
     private List<String> tags;
+    @SerializedName("problemsetName")
+    private String problemsetName;
 
-    public Problem(Integer contestId, String index, String name, List<String> tags) {
+    public Problem(Integer contestId, String index, String name, List<String> tags, String problemsetName) {
         this.contestId = contestId;
         this.index = index;
         this.name = name;
         this.tags = tags;
+        this.problemsetName = problemsetName;
     }
 
     public Integer getContestId() {
@@ -36,5 +39,9 @@ public class Problem {
 
     public List<String> getTags() {
         return tags;
+    }
+
+    public String getProblemsetName() {
+        return problemsetName;
     }
 }
