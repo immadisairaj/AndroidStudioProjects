@@ -105,8 +105,8 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
                 } else {
                     url += "problemsets/acmsguru/problem/99999/" + submissionList.get(position).getProblem().getIndex();
                 }
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
+                Intent intent = new Intent(holder.itemView.getContext(), WebActivity.class);
+                intent.putExtra("url", url);
                 holder.itemView.getContext().startActivity(intent);
             }
         });
