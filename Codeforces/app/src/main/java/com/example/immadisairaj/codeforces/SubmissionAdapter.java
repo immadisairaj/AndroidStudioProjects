@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,17 +98,18 @@ public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.Su
             @Override
             public void onClick(View v) {
                 String url = "https://codeforces.com/";
-                if(submissionList.get(position).getProblem().getProblemsetName() == null) {
-                    if(submissionList.get(position).getProblem().getContestId() >= 100000)
+                if (submissionList.get(position).getProblem().getProblemsetName() == null) {
+                    if (submissionList.get(position).getProblem().getContestId() >= 100000)
                         url += "gym/" + submissionList.get(position).getProblem().getContestId() + "/problem/" + submissionList.get(position).getProblem().getIndex();
                     else
                         url += "problemset/problem/" + submissionList.get(position).getProblem().getContestId() + "/" + submissionList.get(position).getProblem().getIndex();
                 } else {
                     url += "problemsets/acmsguru/problem/99999/" + submissionList.get(position).getProblem().getIndex();
                 }
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                holder.itemView.getContext().startActivity(intent);
+
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.launchUrl(holder.itemView.getContext(), Uri.parse(url));
             }
         });
     }
